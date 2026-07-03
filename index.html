@@ -27,7 +27,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
@@ -52,7 +52,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Minimales, sauberes Anheben beim Hovern ohne Achsendrehung */
+        /* Minimales Anheben beim Hovern ohne Achsendrehung */
         .launcher-3d:hover {
             transform: rotateY(-14deg) rotateX(7deg) rotateZ(2deg) translateY(-4px);
             box-shadow: 
@@ -63,115 +63,126 @@
 </head>
 <body class="text-neutral-400 antialiased bg-dark-base selection:bg-brand-primary/20 selection:text-white overflow-x-hidden">
 
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] glow-orb pointer-events-none z-0"></div>
+    <div class="max-w-[1440px] mx-auto relative min-h-screen">
 
-    <nav class="fixed top-0 w-full z-50 bg-dark-base/60 backdrop-blur-xl border-b border-dark-border/40">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <span class="heading-font font-bold text-xl tracking-tight text-white uppercase">Swyft<span class="text-brand-primary">_</span></span>
-                <span class="text-[9px] font-mono bg-dark-card border border-dark-border px-2 py-0.5 rounded text-neutral-500">v1.0-LIVE</span>
-            </div>
-            <div class="hidden sm:flex items-center space-x-8 text-xs font-semibold tracking-wider uppercase text-neutral-400">
-                <a href="#features" class="hover:text-white transition">Features</a>
-                <a href="https://discord.gg" target="_blank" class="hover:text-white transition">Community</a>
-            </div>
-            <div>
-                <a href="#download-section" class="bg-gradient-to-r from-brand-primary to-brand-glow text-white text-xs font-bold px-5 py-2.5 rounded hover:opacity-90 transition shadow-lg shadow-brand-primary/10">
-                    Download
-                </a>
-            </div>
-        </div>
-    </nav>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] glow-orb pointer-events-none z-0"></div>
 
-    <section class="relative min-h-screen pt-24 pb-16 flex items-center max-w-7xl mx-auto px-6 md:px-12 z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full">
-            
-            <div class="lg:col-span-5 space-y-6">
-                <h1 class="heading-font text-5xl sm:text-6xl font-extrabold tracking-tighter leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-brand-primary w-max max-w-full">
-                    THE ONLY <br>1.8.9 CLIENT <br>YOU NEED.
-                </h1>
-                <p class="text-neutral-400 text-sm sm:text-base max-w-md leading-relaxed font-medium">
-                    Unmatched frames, hyper-responsive hit registration, and beautiful HUD mods out of the box. Built exactly how competitive PvP players want it.
-                </p>
-                
-                <div class="pt-4 flex flex-col sm:flex-row gap-4">
-                    <button id="ctaDownload" class="bg-white text-black hover:bg-neutral-200 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded transition flex items-center justify-center space-x-3">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                        <span>Download Free Installer</span>
-                    </button>
+        <nav class="fixed top-0 max-w-[1440px] w-full z-50 bg-dark-base/60 backdrop-blur-xl border-b border-dark-border/40">
+            <div class="px-6 md:px-12 h-16 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="heading-font font-bold text-xl tracking-tight text-white uppercase">Swyft<span class="text-brand-primary">_</span></span>
+                    <span class="text-[9px] font-mono bg-dark-card border border-dark-border px-2 py-0.5 rounded text-neutral-500">v1.0-LIVE</span>
+                </div>
+                <div class="hidden sm:flex items-center space-x-8 text-xs font-semibold tracking-wider uppercase text-neutral-400">
+                    <a href="#features" class="hover:text-white transition">Features</a>
+                    <a href="https://discord.gg" target="_blank" class="hover:text-white transition">Community</a>
+                </div>
+                <div>
+                    <a href="https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=1" class="bg-gradient-to-r from-brand-primary to-brand-glow text-white text-xs font-bold px-5 py-2.5 rounded hover:opacity-90 transition shadow-lg shadow-brand-primary/10">
+                        Download
+                    </a>
                 </div>
             </div>
+        </nav>
 
-            <div class="lg:col-span-7 w-full perspective-wrapper py-8 sm:py-12">
-                <div class="launcher-3d bg-dark-surface border border-dark-border/80 rounded-xl overflow-hidden relative aspect-[16/10] flex items-center justify-center">
+        <section class="relative min-h-screen pt-24 pb-16 flex items-center px-6 md:px-12 z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <h1 class="heading-font text-5xl sm:text-6xl font-extrabold tracking-tighter leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-brand-primary w-max max-w-full">
+                        THE ONLY <br>1.8.9 CLIENT <br>YOU NEED.
+                    </h1>
+                    <p class="text-neutral-400 text-sm sm:text-base max-w-md leading-relaxed font-medium">
+                        Unmatched frames, hyper-responsive hit registration, and beautiful HUD mods out of the box. Built exactly how competitive PvP players want it.
+                    </p>
                     
-                    <img src="launcher.png" alt="Swyft Launcher Preview" class="w-full h-full object-cover relative z-10">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-br from-dark-surface to-dark-base flex items-center justify-center pointer-events-none">
-                        <span class="text-xs font-mono text-neutral-700 tracking-widest uppercase">[ launcher_3d_screenshot ]</span>
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                        <button id="ctaDownload" class="bg-white text-black hover:bg-neutral-200 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded transition flex items-center justify-center space-x-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            <span>Download Free Installer</span>
+                        </button>
                     </div>
                 </div>
+
+                <div class="lg:col-span-7 w-full perspective-wrapper py-8 sm:py-12">
+                    <div class="launcher-3d bg-dark-surface border border-dark-border/80 rounded-xl overflow-hidden relative aspect-[16/10] flex items-center justify-center">
+                        
+                        <img src="launcher.png" alt="Swyft Launcher Preview" class="w-full h-full object-cover relative z-10">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-br from-dark-surface to-dark-base flex items-center justify-center pointer-events-none">
+                            <span class="text-xs font-mono text-neutral-700 tracking-widest uppercase">[ launcher_3d_screenshot ]</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
+        <section id="features" class="border-t border-dark-border/40 bg-dark-surface py-20 relative z-10">
+            <div class="px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <div class="space-y-3">
+                    <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-dark-border flex items-center justify-center text-white text-xs font-bold font-mono">01</div>
+                    <h4 class="heading-font text-lg font-bold text-white">Frametime Stability</h4>
+                    <p class="text-neutral-500 text-xs leading-relaxed">
+                        No artificial spikes. Swyft stabilizes asset calls in the background so your frame delivery graph stays perfectly linear even during intense 4v4 rushes.
+                    </p>
+                </div>
 
-    <section id="features" class="border-t border-dark-border/40 bg-dark-surface py-20 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
-            
-            <div class="space-y-3">
-                <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-dark-border flex items-center justify-center text-white text-xs font-bold font-mono">01</div>
-                <h4 class="heading-font text-lg font-bold text-white">Frametime Stability</h4>
-                <p class="text-neutral-500 text-xs leading-relaxed">
-                    No artificial spikes. Swyft stabilizes asset calls in the background so your frame delivery graph stays perfectly linear even during intense 4v4 rushes.
+                <div class="space-y-3">
+                    <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-dark-border flex items-center justify-center text-white text-xs font-bold font-mono">02</div>
+                    <h4 class="heading-font text-lg font-bold text-white">Uncluttered Overlay Management</h4>
+                    <p class="text-neutral-500 text-xs leading-relaxed">
+                        A clean right-shift canvas menu allows full customization of every mod layout. Scale, drag, and snap features precisely without blinding menus.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-dark-border flex items-center justify-center text-white text-xs font-bold font-mono">03</div>
+                    <h4 class="heading-font text-lg font-bold text-white">Anti-Cheat Safe Blueprint</h4>
+                    <p class="text-neutral-500 text-xs leading-relaxed">
+                        Built entirely vanilla-compliant. No modified packet timestamps, strictly allowed client-side improvements approved for any major network.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <footer id="download-section" class="border-t border-dark-border/30 bg-dark-base py-16 text-center text-xs font-mono text-neutral-600 relative z-10">
+            <div class="space-y-4 px-6">
+                <div class="text-[11px] text-neutral-500">Swyft Client — Performance Redefined.</div>
+                <p class="text-[9px] text-neutral-700 max-w-2xl mx-auto leading-relaxed">
+                    Swyft is an independent project and is not affiliated with Mojang Studios, Microsoft, Badlion, or Feather. All corporate identities and registered trademarks belong entirely to their respective owners.
                 </p>
             </div>
+        </footer>
 
-            <div class="space-y-3">
-                <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-dark-border flex items-center justify-center text-white text-xs font-bold font-mono">02</div>
-                <h4 class="heading-font text-lg font-bold text-white">Uncluttered Overlay Management</h4>
-                <p class="text-neutral-500 text-xs leading-relaxed">
-                    A clean right-shift canvas menu allows full customization of every mod layout. Scale, drag, and snap features precisely without blinding menus.
-                </p>
+        <div id="downloadToast" class="fixed bottom-6 right-6 bg-dark-card border border-dark-border text-white px-5 py-3.5 rounded-lg text-xs font-mono opacity-0 transition-all duration-300 pointer-events-none shadow-2xl z-50 transform translate-y-2">
+            <div class="flex items-center space-x-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary animate-ping"></span>
+                <span>Downloading SwyftClient.exe directly...</span>
             </div>
-
-            <div class="space-y-3">
-                <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-dark-border flex items-center justify-center text-white text-xs font-bold font-mono">03</div>
-                <h4 class="heading-font text-lg font-bold text-white">Anti-Cheat Safe Blueprint</h4>
-                <p class="text-neutral-500 text-xs leading-relaxed">
-                    Built entirely vanilla-compliant. No modified packet timestamps, strictly allowed client-side improvements approved for any major network.
-                </p>
-            </div>
-
         </div>
-    </section>
 
-    <footer id="download-section" class="border-t border-dark-border/30 bg-dark-base py-16 text-center text-xs font-mono text-neutral-600 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 space-y-4">
-            <div class="text-[11px] text-neutral-500">Swyft Client — Performance Redefined.</div>
-            <p class="text-[9px] text-neutral-700 max-w-2xl mx-auto leading-relaxed">
-                Swyft is an independent project and is not affiliated with Mojang Studios, Microsoft, Badlion, or Feather. All corporate identities and registered trademarks belong entirely to their respective owners.
-            </p>
-        </div>
-    </footer>
-
-    <div id="downloadToast" class="fixed bottom-6 right-6 bg-dark-card border border-dark-border text-white px-5 py-3.5 rounded-lg text-xs font-mono opacity-0 transition-all duration-300 pointer-events-none shadow-2xl z-50 transform translate-y-2">
-        <div class="flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-primary animate-ping"></span>
-            <span>Fetching SwyftInstaller.exe via local secure route...</span>
-        </div>
     </div>
 
     <script>
         const triggerBtn = document.getElementById('ctaDownload');
         const toast = document.getElementById('downloadToast');
+        
+        // Modifizierte Direkt-Download-URL
+        const directDownloadUrl = "https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=1";
 
         triggerBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            
+            // Notification anzeigen
             toast.classList.remove('opacity-0', 'translate-y-2');
             
-            // window.location.href = "https://yourcdn.com/SwyftInstaller.exe";
+            // Download direkt im Browser triggern
+            window.location.href = directDownloadUrl;
 
+            // Notification nach 5 Sekunden ausblenden
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-2');
             }, 5000);
