@@ -27,7 +27,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
@@ -38,37 +38,46 @@
             background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(79, 70, 229, 0.12) 40%, transparent 70%);
         }
 
-        /* 3D PERSPECTIVE ENGINE (Feste, edle Position) */
+        /* 3D PERSPECTIVE ENGINE */
         .perspective-wrapper {
             perspective: 1200px;
         }
         
+        /* Auf Mobile flach und sauber, 3D-Effekt greift erst ab Desktop (lg) */
         .launcher-3d {
-            transform: rotateY(-14deg) rotateX(7deg) rotateZ(2deg);
+            transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
             transform-style: preserve-3d;
-            box-shadow: 
-                -20px 30px 60px -15px rgba(0,0,0,0.9), 
-                0 0 40px -10px rgba(59,130,246,0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Minimales Anheben beim Hovern ohne Achsendrehung */
-        .launcher-3d:hover {
-            transform: rotateY(-14deg) rotateX(7deg) rotateZ(2deg) translateY(-4px);
-            box-shadow: 
-                -25px 38px 70px -15px rgba(0,0,0,0.95), 
-                0 0 50px -5px rgba(59,130,246,0.15);
+        @media (min-width: 1024px) {
+            .launcher-3d {
+                transform: rotateY(-14deg) rotateX(7deg) rotateZ(2deg);
+                box-shadow: 
+                    -20px 30px 60px -15px rgba(0,0,0,0.9), 
+                    0 0 40px -10px rgba(59,130,246,0.08);
+            }
+            .launcher-3d:hover {
+                transform: rotateY(-14deg) rotateX(7deg) rotateZ(2deg) translateY(-4px);
+                box-shadow: 
+                    -25px 38px 70px -15px rgba(0,0,0,0.95), 
+                    0 0 50px -5px rgba(59,130,246,0.15);
+            }
         }
     </style>
 </head>
 <body class="text-neutral-400 antialiased bg-dark-base selection:bg-brand-primary/20 selection:text-white overflow-x-hidden">
 
+    <!-- BEGRENZTER HAUPTCONTAINER (Hält die Website auf allen Bildschirmen gleich groß & zentriert) -->
     <div class="max-w-[1440px] mx-auto relative min-h-screen">
 
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] glow-orb pointer-events-none z-0"></div>
+        <!-- BACKGROUND GLOW EFFECTS -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[600px] glow-orb pointer-events-none z-0"></div>
 
+        <!-- NAVBAR -->
         <nav class="fixed top-0 max-w-[1440px] w-full z-50 bg-dark-base/60 backdrop-blur-xl border-b border-dark-border/40">
-            <div class="px-6 md:px-12 h-16 flex items-center justify-between">
+            <div class="px-4 sm:px-6 md:px-12 h-16 flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <span class="heading-font font-bold text-xl tracking-tight text-white uppercase">Swyft<span class="text-brand-primary">_</span></span>
                     <span class="text-[9px] font-mono bg-dark-card border border-dark-border px-2 py-0.5 rounded text-neutral-500">v1.0-LIVE</span>
@@ -78,37 +87,45 @@
                     <a href="https://discord.gg/WVXUDVPjJD" target="_blank" class="hover:text-white transition">Community</a>
                 </div>
                 <div>
-                    <a href="https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=1" class="bg-gradient-to-r from-brand-primary to-brand-glow text-white text-xs font-bold px-5 py-2.5 rounded hover:opacity-90 transition shadow-lg shadow-brand-primary/10">
+                    <!-- Direkt-Download-Link in der Navigation -->
+                    <a href="https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=1" class="bg-gradient-to-r from-brand-primary to-brand-glow text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded hover:opacity-90 transition shadow-lg shadow-brand-primary/10">
                         Download
                     </a>
                 </div>
             </div>
         </nav>
 
-        <section class="relative min-h-screen pt-24 pb-16 flex items-center px-6 md:px-12 z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full">
+        <!-- HERO SECTION -->
+        <section class="relative min-h-screen pt-28 pb-12 lg:py-16 flex items-center px-4 sm:px-6 md:px-12 z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
                 
-                <div class="lg:col-span-5 space-y-6">
-                    <h1 class="heading-font text-5xl sm:text-6xl font-extrabold tracking-tighter leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-brand-primary w-max max-w-full">
+                <!-- LEFT TEXT HUB -->
+                <div class="lg:col-span-5 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+                    <!-- Optimierter, responsiver Verlauf über alle 3 Zeilen basierend auf deiner Textbreite -->
+                    <h1 class="heading-font text-4xl sm:text-6xl font-extrabold tracking-tighter leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-brand-primary w-max max-w-full">
                         THE ONLY <br>1.8.9 CLIENT <br>YOU NEED.
                     </h1>
                     <p class="text-neutral-400 text-sm sm:text-base max-w-md leading-relaxed font-medium">
                         Unmatched frames, hyper-responsive hit registration, and beautiful HUD mods out of the box. Built exactly how competitive PvP players want it.
                     </p>
                     
-                    <div class="pt-4 flex flex-col sm:flex-row gap-4">
-                        <button id="ctaDownload" class="bg-white text-black hover:bg-neutral-200 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded transition flex items-center justify-center space-x-3">
+                    <div class="pt-2 w-full sm:w-auto">
+                        <!-- Haupt-Download-Button -->
+                        <button id="ctaDownload" class="w-full sm:w-auto bg-white text-black hover:bg-neutral-200 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded transition flex items-center justify-center space-x-3">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                             <span>Download Free Client</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 w-full perspective-wrapper py-8 sm:py-12">
+                <!-- RIGHT COLUMN: RESPONSIVE 3D SCREENSHOT CONTAINER -->
+                <div class="lg:col-span-7 w-full perspective-wrapper py-4 sm:py-12">
                     <div class="launcher-3d bg-dark-surface border border-dark-border/80 rounded-xl overflow-hidden relative aspect-[16/10] flex items-center justify-center">
                         
+                        <!-- The Launcher Image -->
                         <img src="launcher.png" alt="Swyft Launcher Preview" class="w-full h-full object-cover relative z-10">
                         
+                        <!-- Fallback-Text falls das Bild fehlt -->
                         <div class="absolute inset-0 bg-gradient-to-br from-dark-surface to-dark-base flex items-center justify-center pointer-events-none">
                             <span class="text-xs font-mono text-neutral-700 tracking-widest uppercase">[ launcher_3d_screenshot ]</span>
                         </div>
@@ -118,8 +135,9 @@
             </div>
         </section>
 
-        <section id="features" class="border-t border-dark-border/40 bg-dark-surface py-20 relative z-10">
-            <div class="px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <!-- CLEAN HIGH-END VALUE SECTION -->
+        <section id="features" class="border-t border-dark-border/40 bg-dark-surface py-16 lg:py-20 relative z-10">
+            <div class="px-4 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
                 
                 <div class="space-y-3">
                     <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-dark-border flex items-center justify-center text-white text-xs font-bold font-mono">01</div>
@@ -148,8 +166,9 @@
             </div>
         </section>
 
-        <footer id="download-section" class="border-t border-dark-border/30 bg-dark-base py-16 text-center text-xs font-mono text-neutral-600 relative z-10">
-            <div class="space-y-4 px-6">
+        <!-- FOOTER -->
+        <footer id="download-section" class="border-t border-dark-border/30 bg-dark-base py-12 text-center text-xs font-mono text-neutral-600 relative z-10">
+            <div class="space-y-4 px-4 sm:px-6">
                 <div class="text-[11px] text-neutral-500">Swyft Client — Performance Redefined.</div>
                 <p class="text-[9px] text-neutral-700 max-w-2xl mx-auto leading-relaxed">
                     Swyft is an independent project and is not affiliated with Mojang Studios, Microsoft, Badlion, or Feather. All corporate identities and registered trademarks belong entirely to their respective owners.
@@ -157,8 +176,9 @@
             </div>
         </footer>
 
-        <div id="downloadToast" class="fixed bottom-6 right-6 bg-dark-card border border-dark-border text-white px-5 py-3.5 rounded-lg text-xs font-mono opacity-0 transition-all duration-300 pointer-events-none shadow-2xl z-50 transform translate-y-2">
-            <div class="flex items-center space-x-2">
+        <!-- DOWNLOAD NOTIFICATION TOAST -->
+        <div id="downloadToast" class="fixed bottom-4 right-4 left-4 sm:left-auto bg-dark-card border border-dark-border text-white px-5 py-3.5 rounded-lg text-xs font-mono opacity-0 transition-all duration-300 pointer-events-none shadow-2xl z-50 transform translate-y-2">
+            <div class="flex items-center justify-center sm:justify-start space-x-2">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-primary animate-ping"></span>
                 <span>Downloading SwyftClient.exe directly...</span>
             </div>
@@ -166,6 +186,7 @@
 
     </div>
 
+    <!-- JAVASCRIPT FOR DIRECT DOWNLOAD -->
     <script>
         const triggerBtn = document.getElementById('ctaDownload');
         const toast = document.getElementById('downloadToast');
