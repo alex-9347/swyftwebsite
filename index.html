@@ -43,7 +43,6 @@
             perspective: 1200px;
         }
         
-        /* Auf Mobile flach und sauber, 3D-Effekt greift erst ab Desktop (lg) */
         .launcher-3d {
             transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
             transform-style: preserve-3d;
@@ -65,28 +64,78 @@
                     0 0 50px -5px rgba(59,130,246,0.15);
             }
         }
+
+        /* PREMIUM DARK-MODE OPTIMIERUNG FÜR DEINE TERMLY TERMS OF USE */
+        [data-custom-class='body'], [data-custom-class='body'] * {
+            background: transparent !important;
+        }
+        [data-custom-class='title'], [data-custom-class='title'] * {
+            font-family: 'Space Grotesk', sans-serif !important;
+            font-size: 24px !important;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+        }
+        [data-custom-class='subtitle'], [data-custom-class='subtitle'] * {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            color: #a3a3a3 !important;
+            font-size: 13px !important;
+        }
+        [data-custom-class='heading_1'], [data-custom-class='heading_1'] * {
+            font-family: 'Space Grotesk', sans-serif !important;
+            font-size: 18px !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            margin-top: 1.5rem !important;
+            display: block;
+        }
+        [data-custom-class='heading_2'], [data-custom-class='heading_2'] * {
+            font-family: 'Space Grotesk', sans-serif !important;
+            font-size: 15px !important;
+            color: #f5f5f5 !important;
+            font-weight: 600 !important;
+            margin-top: 1rem !important;
+            display: block;
+        }
+        [data-custom-class='body_text'], [data-custom-class='body_text'] * {
+            color: #a3a3a3 !important;
+            font-size: 14px !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            line-height: 1.6 !important;
+        }
+        [data-custom-class='link'], [data-custom-class='link'] * {
+            color: #3b82f6 !important;
+            font-size: 14px !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            word-break: break-word !important;
+            text-decoration: underline !important;
+        }
+        ul.terms-list {
+            list-style-type: square !important;
+            padding-left: 1.5rem !important;
+            margin-y: 1rem !important;
+        }
+        ul.terms-list li {
+            margin-bottom: 0.5rem !important;
+        }
     </style>
 </head>
 <body class="text-neutral-400 antialiased bg-dark-base selection:bg-brand-primary/20 selection:text-white overflow-x-hidden">
 
-    <!-- BEGRENZTER HAUPTCONTAINER (Hält die Website auf allen Bildschirmen gleich groß & zentriert) -->
     <div class="max-w-[1440px] mx-auto relative min-h-screen">
 
-        <!-- BACKGROUND GLOW EFFECTS -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[600px] glow-orb pointer-events-none z-0"></div>
 
-        <!-- NAVBAR -->
         <nav class="fixed top-0 max-w-[1440px] w-full z-50 bg-dark-base/60 backdrop-blur-xl border-b border-dark-border/40">
             <div class="px-4 sm:px-6 md:px-12 h-16 flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <span class="heading-font font-bold text-xl tracking-tight text-white uppercase">Swyft<span class="text-brand-primary">_</span></span>
+                    <span class="text-[9px] font-mono bg-dark-card border border-dark-border px-2 py-0.5 rounded text-neutral-500">v1.0-LIVE</span>
                 </div>
                 <div class="hidden sm:flex items-center space-x-8 text-xs font-semibold tracking-wider uppercase text-neutral-400">
                     <a href="#features" class="hover:text-white transition">Features</a>
-                    <a href="https://discord.gg/WVXUDVPjJD" target="_blank" class="hover:text-white transition">Discord</a>
+                    <a href="https://discord.gg/WVXUDVPjJD" target="_blank" class="hover:text-white transition">Community</a>
                 </div>
                 <div>
-                    <!-- Direkt-Download-Link in der Navigation -->
                     <a href="https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=1" class="bg-gradient-to-r from-brand-primary to-brand-glow text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded hover:opacity-90 transition shadow-lg shadow-brand-primary/10">
                         Download
                     </a>
@@ -94,13 +143,10 @@
             </div>
         </nav>
 
-        <!-- HERO SECTION -->
         <section class="relative min-h-screen pt-28 pb-12 lg:py-16 flex items-center px-4 sm:px-6 md:px-12 z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
                 
-                <!-- LEFT TEXT HUB -->
                 <div class="lg:col-span-5 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
-                    <!-- Optimierter, responsiver Verlauf über alle 3 Zeilen basierend auf deiner Textbreite -->
                     <h1 class="heading-font text-4xl sm:text-6xl font-extrabold tracking-tighter leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-brand-primary w-max max-w-full">
                         THE ONLY <br>1.8.9 CLIENT <br>YOU NEED.
                     </h1>
@@ -109,22 +155,16 @@
                     </p>
                     
                     <div class="pt-2 w-full sm:w-auto">
-                        <!-- Haupt-Download-Button -->
                         <button id="ctaDownload" class="w-full sm:w-auto bg-white text-black hover:bg-neutral-200 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded transition flex items-center justify-center space-x-3">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                            <span>Download Free Launcher</span>
+                            <span>Download Free Client</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- RIGHT COLUMN: RESPONSIVE 3D SCREENSHOT CONTAINER -->
                 <div class="lg:col-span-7 w-full perspective-wrapper py-4 sm:py-12">
                     <div class="launcher-3d bg-dark-surface border border-dark-border/80 rounded-xl overflow-hidden relative aspect-[16/10] flex items-center justify-center">
-                        
-                        <!-- The Launcher Image -->
                         <img src="launcher.png" alt="Swyft Launcher Preview" class="w-full h-full object-cover relative z-10">
-                        
-                        <!-- Fallback-Text falls das Bild fehlt -->
                         <div class="absolute inset-0 bg-gradient-to-br from-dark-surface to-dark-base flex items-center justify-center pointer-events-none">
                             <span class="text-xs font-mono text-neutral-700 tracking-widest uppercase">[ launcher_3d_screenshot ]</span>
                         </div>
@@ -134,7 +174,6 @@
             </div>
         </section>
 
-        <!-- CLEAN HIGH-END VALUE SECTION -->
         <section id="features" class="border-t border-dark-border/40 bg-dark-surface py-16 lg:py-20 relative z-10">
             <div class="px-4 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
                 
@@ -165,17 +204,18 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer id="download-section" class="border-t border-dark-border/30 bg-dark-base py-12 text-center text-xs font-mono text-neutral-600 relative z-10">
             <div class="space-y-4 px-4 sm:px-6">
-                <div class="text-[11px] text-neutral-500">Swyft Client — Performance Redefined.</div>
+                <div class="text-[11px] text-neutral-500">
+                    Swyft Client — Performance Redefined. | 
+                    <button id="openTerms" class="text-brand-primary hover:underline font-medium transition ml-1">Terms of Use</button>
+                </div>
                 <p class="text-[9px] text-neutral-700 max-w-2xl mx-auto leading-relaxed">
                     Swyft is an independent project and is not affiliated with Mojang Studios, Microsoft, Badlion, or Feather. All corporate identities and registered trademarks belong entirely to their respective owners.
                 </p>
             </div>
         </footer>
 
-        <!-- DOWNLOAD NOTIFICATION TOAST -->
         <div id="downloadToast" class="fixed bottom-4 right-4 left-4 sm:left-auto bg-dark-card border border-dark-border text-white px-5 py-3.5 rounded-lg text-xs font-mono opacity-0 transition-all duration-300 pointer-events-none shadow-2xl z-50 transform translate-y-2">
             <div class="flex items-center justify-center sm:justify-start space-x-2">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-primary animate-ping"></span>
@@ -183,29 +223,235 @@
             </div>
         </div>
 
+        <div id="termsModal" class="fixed inset-0 z-[100] bg-dark-base/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="bg-dark-surface border border-dark-border rounded-xl w-full max-w-3xl max-h-[80vh] flex flex-col shadow-2xl">
+                
+                <div class="p-4 border-b border-dark-border flex items-center justify-between bg-dark-base/40 rounded-t-xl">
+                    <span class="heading-font font-bold text-white text-sm uppercase tracking-wider">Legal Documentation</span>
+                    <button id="closeTerms" class="text-neutral-500 hover:text-white text-sm font-mono p-1 bg-dark-card border border-dark-border rounded transition px-2">ESC / CLOSE</button>
+                </div>
+
+                <div class="p-6 overflow-y-auto space-y-4 text-left font-sans">
+                    <div data-custom-class="body">
+                        <div align="center" style="text-align: left;">
+                            <div class="MsoNormal" data-custom-class="title" style="line-height: 1.5;">
+                                <strong><h1>TERMS OF USE</h1></strong>
+                            </div>
+                            <div class="MsoNormal" data-custom-class="subtitle" style="line-height: 1.5;">
+                                <strong>Last updated</strong> <strong>July 08, 2026</strong>
+                            </div>
+                            <div class="MsoNormal" data-custom-class="heading_1" style="line-height: 1.5;">
+                                <strong><h2>AGREEMENT TO OUR LEGAL TERMS</h2></strong>
+                            </div>
+                        </div>
+                        <div align="center" style="text-align: left;">
+                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
+                                We are <strong>Swyft Client</strong>, doing business as <strong>Swyft</strong> ("<strong>Company</strong>," "<strong>we</strong>," "<strong>us</strong>," "<strong>our</strong>").
+                            </div>
+                        </div>
+                        <div align="center" style="text-align: left;">
+                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
+                                We operate the website <a target="_blank" data-custom-class="link" href="https://alex-9347.github.io/swyftwebsite/">https://alex-9347.github.io/swyftwebsite/</a> (the "<strong>Site</strong>"), as well as any other related products and services that refer or link to these legal terms (the "<strong>Legal Terms</strong>") (collectively, the "<strong>Services</strong>").
+                            </div>
+                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
+                                These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("<strong>you</strong>"), and Swyft Client, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
+                            </div>
+                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
+                                Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms from time to time. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.
+                            </div>
+                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
+                                All users who are minors in the jurisdiction in which they reside (generally under the age of 18) must have the permission of, and be directly supervised by, their parent or guardian to use the Services. If you are a minor, you must have your parent or guardian read and agree to these Legal Terms prior to you using the Services.
+                            </div>
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="services">
+                            <strong><h2>1. OUR SERVICES</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable.
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use the Services. You may not use the Services in a way that would violate the Gramm-Leach-Bliley Act (GLBA).
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="ip">
+                            <strong><h2>2. INTELLECTUAL PROPERTY RIGHTS</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="heading_2">
+                            <strong><h3>Our intellectual property</h3></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks"). Our Content and Marks are protected by copyright and trademark laws and treaties around the world. The Content and Marks are provided in or through the Services "AS IS" for your personal, non-commercial use only.
+                        </div>
+                        <div class="MsoNormal" data-custom-class="heading_2">
+                            <strong><h3>Your use of our Services</h3></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            Subject to your compliance with these Legal Terms, including the PROHIBITED ACTIVITIES section below, we grant you a non-exclusive, non-transferable, revocable license to access the Services, solely for your personal, non-commercial use. Except as set out in this section, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission. Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="userreps">
+                            <strong><h2>3. USER REPRESENTATIONS</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            By using the Services, you represent and warrant that: (1) you have the legal capacity and you agree to comply with these Legal Terms; (2) you are not a minor in the jurisdiction in which you reside, or if a minor, you have received parental permission to use the Services; (3) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (4) you will not use the Services for any illegal or unauthorized purpose; and (5) your use of the Services will not violate any applicable law or regulation. If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Services.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="prohibited">
+                            <strong><h2>4. PROHIBITED ACTIVITIES</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            You may not access or use the Services for any purpose other than that for which we make the Services available. As a user of the Services, you agree not to:
+                        </div>
+                        <ul class="terms-list text-xs sm:text-sm text-neutral-400 space-y-1 py-2">
+                            <li>Systematically retrieve data or other content from the Services to create or compile a collection or directory without written permission from us.</li>
+                            <li>Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords.</li>
+                            <li>Circumvent, disable, or otherwise interfere with security-related features of the Services.</li>
+                            <li>Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Services.</li>
+                            <li>Use any information obtained from the Services in order to harass, abuse, or harm another person.</li>
+                            <li>Use the Services in a manner inconsistent with any applicable laws or regulations.</li>
+                            <li>Copy or adapt the Services' software, including but not limited to HTML, JavaScript, or other code.</li>
+                            <li>Reverse engineer, decompile, disassemble, or modify any of the software comprising the client.</li>
+                            <li>Use the Services to advertise or offer to sell goods and services.</li>
+                        </ul>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="ugc">
+                            <strong><h2>5. USER GENERATED CONTRIBUTIONS</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            The Services do not offer users to submit or post public content. We may provide you with the opportunity to create, submit, or broadcast feedback or suggestions to us (collectively, "Contributions"). When you create or make available any Contributions, you thereby represent and warrant that your Contributions do not infringe the proprietary rights, including but not limited to the copyright, patent, or trademark of any third party.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="license">
+                            <strong><h2>6. CONTRIBUTION LICENSE</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            You and Services agree that we may access, store, process, and use any information and personal data that you provide and your choices (including settings). By submitting suggestions or other feedback regarding the Services, you agree that we can use and share such feedback for any purpose without compensation to you.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="reviews">
+                            <strong><h2>7. GUIDELINES FOR REVIEWS</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            We may provide you areas on the Services to leave reviews or ratings. When posting a review, you must comply with the criteria that your reviews should not contain offensive profanity, or abusive, racist, offensive, discriminatory, or hateful language. We do not assume liability for any review or for any claims, liabilities, or losses resulting from any review.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="thirdparty">
+                            <strong><h2>8. THIRD-PARTY WEBSITES AND CONTENT</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            The Services may contain links to other websites ("Third-Party Websites") as well as software belonging to third parties ("Third-Party Content"). Such Third-Party Websites and Third-Party Content are not investigated or monitored for accuracy by us, and we are not responsible for them. Inclusion of or linking to any Third-Party Content does not imply endorsement by us.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="sitemanage">
+                            <strong><h2>9. SERVICES MANAGEMENT</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Legal Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Legal Terms; and (3) otherwise manage the Services in a manner designed to protect our rights and property.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="terms">
+                            <strong><h2>10. TERM AND TERMINATION</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            These Legal Terms shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE LEGAL TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES TO ANY PERSON FOR ANY REASON.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="modifications">
+                            <strong><h2>11. MODIFICATIONS AND INTERRUPTIONS</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="law">
+                            <strong><h2>12. GOVERNING LAW</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            These Legal Terms are governed by and interpreted following the laws of <strong>Germany</strong>, and the use of the United Nations Convention of Contracts for the International Sales of Goods is expressly excluded. Swyft Client and yourself both agree to submit to the non-exclusive jurisdiction of the courts of <strong>Karlsruhe</strong>.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="disclaimer">
+                            <strong><h2>15. DISCLAIMER</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            THE SERVICES ARE PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE SERVICES WILL BE AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE SERVICES AND YOUR USE THEREOF.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="liability">
+                            <strong><h2>16. LIMITATIONS OF LIABILITY</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICES.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="addclause">
+                            <strong><h2>22. RELATIONSHIP TO MINECRAFT AND MOJANG:</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            This client is an independent, unofficial modification for Minecraft. It is not affiliated with, endorsed by, or associated with Mojang Studios, Microsoft, or any of their affiliates. "Minecraft" is a registered trademark of Mojang Synergies AB.
+                        </div>
+
+                        <div class="MsoNormal" data-custom-class="heading_1" id="contact">
+                            <strong><h2>23. CONTACT US</h2></strong>
+                        </div>
+                        <div class="MsoNormal" data-custom-class="body_text">
+                            In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at our deployment streams. <br><br>
+                            <strong>Swyft Client Team</strong>
+                        </div>
+                        
+                        <div class="pt-6 border-t border-dark-border mt-6 text-[10px] text-neutral-600">
+                            This Terms and Conditions was created using Termly's <a href="https://termly.io/products/terms-and-conditions-generator/" target="_blank" rel="noopener external" data-custom-class='link'>Terms and Conditions Generator</a>.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
-    <!-- JAVASCRIPT FOR DIRECT DOWNLOAD -->
     <script>
+        // Download Toast Logic
         const triggerBtn = document.getElementById('ctaDownload');
         const toast = document.getElementById('downloadToast');
-        
-        // Modifizierte Direkt-Download-URL
-        const directDownloadUrl = "https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=0xmbwrfs&dl=1";
+        const directDownloadUrl = "https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=1";
 
         triggerBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            // Notification anzeigen
             toast.classList.remove('opacity-0', 'translate-y-2');
-            
-            // Download direkt im Browser triggern
             window.location.href = directDownloadUrl;
-
-            // Notification nach 5 Sekunden ausblenden
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-2');
             }, 5000);
+        });
+
+        // Modal Terms of Use Logic
+        const openTermsBtn = document.getElementById('openTerms');
+        const closeTermsBtn = document.getElementById('closeTerms');
+        const termsModal = document.getElementById('termsModal');
+
+        function toggleModal(open) {
+            if (open) {
+                termsModal.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden'; // Deaktiviert Scrolling im Hintergrund
+            } else {
+                termsModal.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = ''; // Aktiviert Scrolling wieder
+            }
+        }
+
+        openTermsBtn.addEventListener('click', () => toggleModal(true));
+        closeTermsBtn.addEventListener('click', () => toggleModal(false));
+        
+        // Schließen per Klick außerhalb des Modal-Fensters
+        termsModal.addEventListener('click', (e) => {
+            if (e.target === termsModal) toggleModal(false);
+        });
+
+        // Schließen per ESC-Taste
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleModal(false);
         });
     </script>
 </body>
