@@ -136,8 +136,8 @@
                     <a href="https://discord.gg/WVXUDVPjJD" target="_blank" class="hover:text-white transition">Community</a>
                 </div>
                 <div>
-                    <!-- ID "navDownload" hinzugefügt für JS-Zuweisung -->
-                    <a id="navDownload" href="#" class="bg-gradient-to-r from-brand-primary to-brand-glow text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded hover:opacity-90 transition shadow-lg shadow-brand-primary/10">
+                    <!-- data-download-btn verknüpft das Element automatisch -->
+                    <a data-download-btn class="bg-gradient-to-r from-brand-primary to-brand-glow text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded hover:opacity-90 transition shadow-lg shadow-brand-primary/10 cursor-pointer">
                         Download
                     </a>
                 </div>
@@ -156,7 +156,8 @@
                     </p>
                     
                     <div class="pt-2 w-full sm:w-auto">
-                        <button id="ctaDownload" class="w-full sm:w-auto bg-white text-black hover:bg-neutral-200 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded transition flex items-center justify-center space-x-3">
+                        <!-- data-download-btn verknüpft das Element automatisch -->
+                        <button data-download-btn class="w-full sm:w-auto bg-white text-black hover:bg-neutral-200 font-bold text-xs tracking-wider uppercase px-8 py-4 rounded transition flex items-center justify-center space-x-3">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                             <span>Download Free Client</span>
                         </button>
@@ -413,29 +414,56 @@
     </div>
 
     <script>
-        // === ZENTRALE VARIABLE FÜR DEN DOWNLOAD-LINK ===
-        const DOWNLOAD_URL = "https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=1";
+        // === 1. BASIS-URL (Hier kannst du auch normale Dropbox-Links mit dl=0 einfügen) ===
+        const RAW_DOWNLOAD_URL = "https://www.dropbox.com/scl/fi/hdcw8izaew0lmnixa76ds/Swyft_Launcher_0.3.0_x64-setup.exe?rlkey=5kqm2dfsw0yxfus35momooomp&st=xg4ndre2&dl=0";
 
-        // Download-Link im Navigationsmenü automatisch setzen
-        const navDownloadLink = document.getElementById('navDownload');
-        if (navDownloadLink) {
-            navDownloadLink.href = DOWNLOAD_URL;
+        // === 2. AUTOMATISCHE DIRECT-DOWNLOAD-KONVERTIERUNG ===
+        function getDirectDownloadUrl(url) {
+            if (!url) return "#";
+            // Ersetzt automatisch "dl=0" durch "dl=1" für Dropbox
+            if (url.includes("dropbox.com")) {
+                if (url.includes("dl=0")) {
+                    return url.replace("dl=0", "dl=1");
+                } else if (!url.includes("dl=1")) {
+                    return url + (url.includes("?") ? "&dl=1" : "?dl=1");
+                }
+            }
+            return url;
         }
 
-        // Download Toast Logic für den CTA-Button im Hero-Bereich
-        const triggerBtn = document.getElementById('ctaDownload');
-        const toast = document.getElementById('downloadToast');
+        const DIRECT_DOWNLOAD_URL = getDirectDownloadUrl(RAW_DOWNLOAD_URL);
 
-        triggerBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toast.classList.remove('opacity-0', 'translate-y-2');
-            window.location.href = DOWNLOAD_URL;
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-2');
-            }, 5000);
+        // === 3. AUTOMATISCHES EINBINDEN AN ALLE DOWNLOAD-BUTTONS ===
+        document.addEventListener("DOMContentLoaded", () => {
+            const downloadElements = document.querySelectorAll('[data-download-btn]');
+            const toast = document.getElementById('downloadToast');
+
+            downloadElements.forEach(el => {
+                // Wenn es ein HTML-Link (<a>) ist, href direkt setzen
+                if (el.tagName.toLowerCase() === 'a') {
+                    el.href = DIRECT_DOWNLOAD_URL;
+                }
+
+                // Klick-Event für alle Download-Elemente hinzufügen
+                el.addEventListener('click', (e) => {
+                    // Toast-Benachrichtigung anzeigen
+                    if (toast) {
+                        toast.classList.remove('opacity-0', 'translate-y-2');
+                        setTimeout(() => {
+                            toast.classList.add('opacity-0', 'translate-y-2');
+                        }, 5000);
+                    }
+
+                    // Bei Buttons oder Links ohne echten Href den Download per JS starten
+                    if (el.tagName.toLowerCase() !== 'a' || el.getAttribute('href') === '#' || !el.getAttribute('href')) {
+                        e.preventDefault();
+                        window.location.href = DIRECT_DOWNLOAD_URL;
+                    }
+                });
+            });
         });
 
-        // Modal Terms of Use Logic
+        // === MODAL TERMS OF USE LOGIC ===
         const openTermsBtn = document.getElementById('openTerms');
         const closeTermsBtn = document.getElementById('closeTerms');
         const termsModal = document.getElementById('termsModal');
@@ -443,22 +471,20 @@
         function toggleModal(open) {
             if (open) {
                 termsModal.classList.remove('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = 'hidden'; // Deaktiviert Scrolling im Hintergrund
+                document.body.style.overflow = 'hidden';
             } else {
                 termsModal.classList.add('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = ''; // Aktiviert Scrolling wieder
+                document.body.style.overflow = '';
             }
         }
 
         openTermsBtn.addEventListener('click', () => toggleModal(true));
         closeTermsBtn.addEventListener('click', () => toggleModal(false));
         
-        // Schließen per Klick außerhalb des Modal-Fensters
         termsModal.addEventListener('click', (e) => {
             if (e.target === termsModal) toggleModal(false);
         });
 
-        // Schließen per ESC-Taste
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') toggleModal(false);
         });
