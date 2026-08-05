@@ -1,379 +1,373 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#0a0a0c]">
+<html lang="en" class="dark"> <!-- Defaulting to dark mode for a gaming client -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swyft Client — Elite 1.8.9 Combat Environment</title>
+    <title>Swyft Client | Open Beta</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
         tailwind.config = {
+            darkMode: 'class', // Enable manual and OS-level dark mode toggling
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    },
                     colors: {
-                        dark: {
-                            base: '#0a0a0c',
-                            surface: '#121216',
-                            card: '#18181f',
-                            border: '#262630'
-                        },
-                        brand: {
-                            primary: '#3b82f6',
-                            glow: '#2563eb'
+                        apple: {
+                            // Light Mode Colors
+                            bg: '#F5F5F7',
+                            surface: '#FFFFFF',
+                            textMain: '#1D1D1F',
+                            textMuted: '#86868B',
+                            blue: '#0071E3',
+                            blueHover: '#0077ED',
+                            border: '#D2D2D7',
+                            
+                            // Dark Mode Colors
+                            bgDark: '#000000',
+                            surfaceDark: '#1C1C1E',
+                            textMainDark: '#F5F5F7',
+                            textMutedDark: '#A1A1A6',
+                            blueDark: '#2997FF', // Slightly brighter blue for dark mode contrast
+                            blueHoverDark: '#4AA8FF',
+                            borderDark: '#333336'
                         }
                     },
-                    fontFamily: {
-                        sans: ['Aeonik', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-                        mono: ['"SF Mono"', 'ui-monospace', 'Menlo', 'monospace']
+                    boxShadow: {
+                        'apple': '0 4px 24px rgba(0, 0, 0, 0.04)',
+                        'apple-hover': '0 10px 40px rgba(0, 0, 0, 0.08)',
+                        'apple-image': '0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.05)',
+                        'apple-dark': '0 4px 24px rgba(0, 0, 0, 0.2)',
+                        'apple-hover-dark': '0 10px 40px rgba(0, 0, 0, 0.4)',
                     }
                 }
             }
         }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Umstellung auf Aeonik & System-Font-Stack zur vollständigen Behebung von slop_fonts -->
-    <link href="https://fonts.cdnfonts.com/css/aeonik" rel="stylesheet">
+
     <style>
-        body { 
-            font-family: 'Aeonik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            color: #e4e4e7;
-        }
-
-        /* Umstellung von Blur-Blobs auf dezente, subtile Ausleuchtung */
-        .ambient-glow {
-            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12) 0%, transparent 60%);
-        }
-
-        /* 3D PERSPECTIVE ENGINE */
-        .perspective-wrapper {
-            perspective: 1200px;
+        body {
+            /* Fallback colors before Tailwind loads */
+            background-color: #000000;
+            color: #F5F5F7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        .launcher-3d {
-            transform: rotateY(0deg) rotateX(0deg);
-            transform-style: preserve-3d;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        html { scroll-behavior: smooth; }
+
+        .glass-nav {
+            background-color: rgba(245, 245, 247, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+        
+        html.dark .glass-nav {
+            background-color: rgba(0, 0, 0, 0.72);
         }
 
-        @media (min-width: 1024px) {
-            .launcher-3d {
-                transform: rotateY(-10deg) rotateX(5deg);
-                box-shadow: -20px 30px 60px -15px rgba(0,0,0,0.9);
-            }
-            .launcher-3d:hover {
-                transform: rotateY(-8deg) rotateX(3deg) translateY(-2px);
-                box-shadow: -25px 35px 70px -15px rgba(0,0,0,0.95);
-            }
+        .apple-transition {
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .apple-transition:hover {
+            transform: scale(1.02);
         }
 
-        /* OPTIMIERTER TERMLY DARK-MODE MIT L >= 0.85 KONTRAST */
-        [data-custom-class='body'], [data-custom-class='body'] * {
-            background: transparent !important;
+        /* Subtle grid background for the visual box */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
         }
-        [data-custom-class='title'], [data-custom-class='title'] * {
-            font-size: 24px !important;
-            color: #ffffff !important;
-            font-weight: 700 !important;
+        html.dark .grid-bg {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
         }
-        [data-custom-class='subtitle'], [data-custom-class='subtitle'] * {
-            color: #a1a1aa !important;
-            font-size: 13px !important;
+
+        /* Cinematic Fade-In Animations (Tuned for Performance Feel) */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        [data-custom-class='heading_1'], [data-custom-class='heading_1'] * {
-            font-size: 18px !important;
-            color: #ffffff !important;
-            font-weight: 700 !important;
-            margin-top: 1.5rem !important;
-            display: block;
-        }
-        [data-custom-class='heading_2'], [data-custom-class='heading_2'] * {
-            font-size: 15px !important;
-            color: #f4f4f5 !important;
-            font-weight: 600 !important;
-            margin-top: 1rem !important;
-            display: block;
-        }
-        [data-custom-class='body_text'], [data-custom-class='body_text'] * {
-            color: #d4d4d8 !important; /* WCAG AA Konformität */
-            font-size: 14px !important;
-            line-height: 1.6 !important;
-        }
-        [data-custom-class='link'], [data-custom-class='link'] * {
-            color: #60a5fa !important;
-            font-size: 14px !important;
-            word-break: break-word !important;
-            text-decoration: underline !important;
-        }
-        ul.terms-list {
-            list-style-type: square !important;
-            padding-left: 1.5rem !important;
-            margin-y: 1rem !important;
-        }
-        ul.terms-list li {
-            margin-bottom: 0.5rem !important;
-        }
+        /* Curve: Starts extremely fast, lands gently */
+        .animate-fade-in-1 { animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .animate-fade-in-2 { opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards; }
+        .animate-fade-in-3 { opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards; }
     </style>
-</head>
-<body class="text-zinc-200 antialiased bg-[#0a0a0c] selection:bg-brand-primary/30 selection:text-white overflow-x-hidden">
-
-    <div class="max-w-[1440px] mx-auto relative min-h-screen">
-
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[500px] ambient-glow pointer-events-none z-0"></div>
-
-        <!-- Navigation mit Satzanfängen anstelle von All-Caps Labels -->
-        <nav class="fixed top-0 max-w-[1440px] w-full z-50 bg-[#0a0a0c]/80 backdrop-blur-md border-b border-dark-border">
-            <div class="px-4 sm:px-6 md:px-12 h-16 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <span class="font-bold text-lg tracking-tight text-white">Swyft<span class="text-brand-primary">_</span></span>
-                    <span class="text-[10px] font-mono bg-dark-card border border-dark-border px-2 py-0.5 rounded text-zinc-400">v1.0-LIVE</span>
-                </div>
-                <!-- Keine Uppercase-Labels mehr -->
-                <div class="hidden sm:flex items-center space-x-8 text-sm font-medium text-zinc-300">
-                    <a href="#features" class="hover:text-white transition">Features</a>
-                    <a href="https://discord.gg/WVXUDVPjJD" target="_blank" class="hover:text-white transition">Community</a>
-                </div>
-                <div>
-                    <!-- High-Contrast Neutral CTA Button (Kein HSL 240-295 Purple Slop) -->
-                    <a data-download-btn class="bg-neutral-100 text-black hover:bg-white text-xs font-semibold px-4 sm:px-5 py-2.5 rounded transition shadow-sm cursor-pointer inline-block">
-                        Download
-                    </a>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section class="relative min-h-screen pt-28 pb-12 lg:py-16 flex items-center px-4 sm:px-6 md:px-12 z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
-                
-                <div class="lg:col-span-5 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
-                    <!-- H1 OHNE Gradient Text & OHNE crushed letter-spacing -->
-                    <h1 class="text-4xl sm:text-6xl font-bold tracking-[-0.015em] leading-[1.05] text-white">
-                        The only 1.8.9 client <span class="text-brand-primary">you need.</span>
-                    </h1>
-                    <!-- Body-Text mit WCAG AA Kontrast (L >= 0.85) -->
-                    <p class="text-zinc-300 text-sm sm:text-base max-w-md leading-relaxed font-normal">
-                        Unmatched frames, hyper-responsive hit registration, and beautiful HUD mods out of the box. Built strictly for competitive PvP players.
-                    </p>
-                    
-                    <div class="pt-2 w-full sm:w-auto">
-                        <button data-download-btn class="w-full sm:w-auto bg-white text-black hover:bg-zinc-200 font-semibold text-xs tracking-normal px-8 py-4 rounded transition flex items-center justify-center space-x-3">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                            <span>Download Free Client</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7 w-full perspective-wrapper py-4 sm:py-12">
-                    <div class="launcher-3d bg-dark-surface border border-dark-border rounded-xl overflow-hidden relative aspect-[16/10] flex items-center justify-center">
-                        <img src="launcher.png" alt="Swyft Launcher Preview" class="w-full h-full object-cover relative z-10">
-                        <div class="absolute inset-0 bg-dark-surface flex items-center justify-center pointer-events-none">
-                            <span class="text-xs font-mono text-zinc-600 uppercase tracking-wider">[ Swyft Launcher UI ]</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Features Section (Ohne generisches 1-2-3 Step Sequence Slop) -->
-        <section id="features" class="border-t border-dark-border bg-dark-surface py-16 lg:py-20 relative z-10">
-            <div class="px-4 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-                
-                <div class="space-y-2.5">
-                    <h3 class="text-base font-semibold text-white">Frametime Stability</h3>
-                    <p class="text-zinc-300 text-xs leading-relaxed">
-                        No artificial spikes. Swyft stabilizes asset calls in the background so your frame delivery graph stays perfectly linear even during intense 4v4 rushes.
-                    </p>
-                </div>
-
-                <div class="space-y-2.5">
-                    <h3 class="text-base font-semibold text-white">Overlay Management</h3>
-                    <p class="text-zinc-300 text-xs leading-relaxed">
-                        A clean right-shift canvas menu allows full customization of every mod layout. Scale, drag, and snap features precisely without blinding menus.
-                    </p>
-                </div>
-
-                <div class="space-y-2.5">
-                    <h3 class="text-base font-semibold text-white">Anti-Cheat Safe Blueprint</h3>
-                    <p class="text-zinc-300 text-xs leading-relaxed">
-                        Built entirely vanilla-compliant. No modified packet timestamps, strictly allowed client-side improvements approved for any major network.
-                    </p>
-                </div>
-
-            </div>
-        </section>
-
-        <footer id="download-section" class="border-t border-dark-border bg-[#0a0a0c] py-12 text-center text-xs font-mono text-zinc-500 relative z-10">
-            <div class="space-y-4 px-4 sm:px-6">
-                <div class="text-[11px] text-zinc-400">
-                    Swyft Client — Performance Redefined. | 
-                    <button id="openTerms" class="text-brand-primary hover:underline font-medium transition ml-1">Terms of Use</button>
-                </div>
-                <p class="text-[10px] text-zinc-600 max-w-2xl mx-auto leading-relaxed font-sans">
-                    Swyft is an independent project and is not affiliated with Mojang Studios, Microsoft, Badlion, or Feather. All corporate identities and registered trademarks belong entirely to their respective owners.
-                </p>
-            </div>
-        </footer>
-
-        <!-- Toast Notification -->
-        <div id="downloadToast" class="fixed bottom-4 right-4 left-4 sm:left-auto bg-dark-card border border-dark-border text-white px-5 py-3.5 rounded-lg text-xs font-mono opacity-0 transition-all duration-300 pointer-events-none shadow-2xl z-50 transform translate-y-2">
-            <div class="flex items-center justify-center sm:justify-start space-x-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-primary animate-ping"></span>
-                <span>Downloading SwyftClient.exe directly...</span>
-            </div>
-        </div>
-
-        <!-- Terms Modal -->
-        <div id="termsModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-            <div class="bg-dark-surface border border-dark-border rounded-xl w-full max-w-3xl max-h-[80vh] flex flex-col shadow-2xl">
-                
-                <div class="p-4 border-b border-dark-border flex items-center justify-between bg-dark-base rounded-t-xl">
-                    <span class="font-bold text-white text-sm">Legal Documentation</span>
-                    <button id="closeTerms" class="text-zinc-400 hover:text-white text-xs font-mono p-1 bg-dark-card border border-dark-border rounded transition px-2">ESC / CLOSE</button>
-                </div>
-
-                <div class="p-6 overflow-y-auto space-y-4 text-left font-sans">
-                    <div data-custom-class="body">
-                        <div align="center" style="text-align: left;">
-                            <div class="MsoNormal" data-custom-class="title" style="line-height: 1.5;">
-                                <strong><h1>TERMS OF USE</h1></strong>
-                            </div>
-                            <div class="MsoNormal" data-custom-class="subtitle" style="line-height: 1.5;">
-                                <strong>Last updated</strong> <strong>July 08, 2026</strong>
-                            </div>
-                            <div class="MsoNormal" data-custom-class="heading_1" style="line-height: 1.5;">
-                                <strong><h2>AGREEMENT TO OUR LEGAL TERMS</h2></strong>
-                            </div>
-                        </div>
-                        <div align="center" style="text-align: left;">
-                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
-                                We are <strong>Swyft Client</strong>, doing business as <strong>Swyft</strong> ("<strong>Company</strong>," "<strong>we</strong>," "<strong>us</strong>," "<strong>our</strong>").
-                            </div>
-                        </div>
-                        <div align="center" style="text-align: left;">
-                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
-                                We operate the website <a target="_blank" data-custom-class="link" href="https://alex-9347.github.io/swyftwebsite/">https://alex-9347.github.io/swyftwebsite/</a> (the "<strong>Site</strong>"), as well as any other related products and services that refer or link to these legal terms (the "<strong>Legal Terms</strong>") (collectively, the "<strong>Services</strong>").
-                            </div>
-                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
-                                These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("<strong>you</strong>"), and Swyft Client, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
-                            </div>
-                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
-                                Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms from time to time. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.
-                            </div>
-                            <div class="MsoNormal" data-custom-class="body_text" style="line-height: 1.5;">
-                                All users who are minors in the jurisdiction in which they reside (generally under the age of 18) must have the permission of, and be directly supervised by, their parent or guardian to use the Services. If you are a minor, you must have your parent or guardian read and agree to these Legal Terms prior to you using the Services.
-                            </div>
-                        </div>
-
-                        <div class="MsoNormal" data-custom-class="heading_1" id="services">
-                            <strong><h2>1. OUR SERVICES</h2></strong>
-                        </div>
-                        <div class="MsoNormal" data-custom-class="body_text">
-                            The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable.
-                        </div>
-
-                        <div class="MsoNormal" data-custom-class="heading_1" id="ip">
-                            <strong><h2>2. INTELLECTUAL PROPERTY RIGHTS</h2></strong>
-                        </div>
-                        <div class="MsoNormal" data-custom-class="heading_2">
-                            <strong><h3>Our intellectual property</h3></strong>
-                        </div>
-                        <div class="MsoNormal" data-custom-class="body_text">
-                            We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks"). Our Content and Marks are protected by copyright and trademark laws and treaties around the world. The Content and Marks are provided in or through the Services "AS IS" for your personal, non-commercial use only.
-                        </div>
-
-                        <div class="MsoNormal" data-custom-class="heading_1" id="userreps">
-                            <strong><h2>3. USER REPRESENTATIONS</h2></strong>
-                        </div>
-                        <div class="MsoNormal" data-custom-class="body_text">
-                            By using the Services, you represent and warrant that: (1) you have the legal capacity and you agree to comply with these Legal Terms; (2) you are not a minor in the jurisdiction in which you reside, or if a minor, you have received parental permission to use the Services.
-                        </div>
-
-                        <div class="MsoNormal" data-custom-class="heading_1" id="contact">
-                            <strong><h2>4. CONTACT US</h2></strong>
-                        </div>
-                        <div class="MsoNormal" data-custom-class="body_text">
-                            In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at our deployment streams. <br><br>
-                            <strong>Swyft Client Team</strong>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
 
     <script>
-        // === 1. BASIS-URL & AUTOMATISCHE DIREKT-LINK KONVERTIERUNG ===
-        const RAW_DOWNLOAD_URL = "https://www.dropbox.com/scl/fi/p1a5zp8gcjvdmjpu7atl2/SwyftClient.exe?rlkey=h8lsvzi1w9drxf9jgxxjl3iug&st=v79q624d&dl=0";
-
-        function getDirectDownloadUrl(url) {
-            if (!url) return "#";
-            if (url.includes("dropbox.com")) {
-                if (url.includes("dl=0")) {
-                    return url.replace("dl=0", "dl=1");
-                } else if (!url.includes("dl=1")) {
-                    return url + (url.includes("?") ? "&dl=1" : "?dl=1");
-                }
-            }
-            return url;
+        // FOR GAMING CLIENTS: Default strictly to Dark Mode on first visit, unless user explicitly saved 'light'
+        if (localStorage.theme === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark'; // lock it in
         }
 
-        const DIRECT_DOWNLOAD_URL = getDirectDownloadUrl(RAW_DOWNLOAD_URL);
-
-        // === 2. VERKNÜPFUNG ALLER DOWNLOAD-BUTTONS IM DOM ===
-        document.addEventListener("DOMContentLoaded", () => {
-            const downloadElements = document.querySelectorAll('[data-download-btn]');
-            const toast = document.getElementById('downloadToast');
-
-            downloadElements.forEach(el => {
-                if (el.tagName.toLowerCase() === 'a') {
-                    el.href = DIRECT_DOWNLOAD_URL;
-                }
-
-                el.addEventListener('click', (e) => {
-                    if (toast) {
-                        toast.classList.remove('opacity-0', 'translate-y-2');
-                        setTimeout(() => {
-                            toast.classList.add('opacity-0', 'translate-y-2');
-                        }, 5000);
-                    }
-
-                    if (el.tagName.toLowerCase() !== 'a' || el.getAttribute('href') === '#' || !el.getAttribute('href')) {
-                        e.preventDefault();
-                        window.location.href = DIRECT_DOWNLOAD_URL;
-                    }
-                });
-            });
-        });
-
-        // === MODAL TERMS OF USE LOGIC ===
-        const openTermsBtn = document.getElementById('openTerms');
-        const closeTermsBtn = document.getElementById('closeTerms');
-        const termsModal = document.getElementById('termsModal');
-
-        function toggleModal(open) {
-            if (open) {
-                termsModal.classList.remove('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = 'hidden';
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
             } else {
-                termsModal.classList.add('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = '';
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
             }
         }
-
-        openTermsBtn.addEventListener('click', () => toggleModal(true));
-        closeTermsBtn.addEventListener('click', () => toggleModal(false));
-        
-        termsModal.addEventListener('click', (e) => {
-            if (e.target === termsModal) toggleModal(false);
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') toggleModal(false);
-        });
     </script>
+</head>
+<body class="bg-apple-bg dark:bg-apple-bgDark text-apple-textMain dark:text-apple-textMainDark selection:bg-apple-blue dark:selection:bg-apple-blueDark selection:text-white transition-colors duration-300">
+
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-apple-border/50 dark:border-apple-borderDark/50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-14 md:h-16 flex items-center justify-between">
+            
+            <!-- Logo & Badge -->
+            <a href="#" class="flex items-center gap-2 md:gap-3 group">
+                <span class="font-semibold text-lg md:text-xl tracking-tight group-hover:opacity-70 transition-opacity">Swyft.</span>
+                <span class="bg-black dark:bg-white text-white dark:text-black text-[10px] md:text-xs px-2 py-0.5 rounded-full font-medium tracking-wide uppercase transition-colors translate-y-[1px] md:translate-y-[2px]">Beta</span>
+            </a>
+            
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#features" class="text-apple-textMuted dark:text-apple-textMutedDark hover:text-apple-textMain dark:hover:text-apple-textMainDark transition-colors">Features</a>
+                <a href="#architecture" class="text-apple-textMuted dark:text-apple-textMutedDark hover:text-apple-textMain dark:hover:text-apple-textMainDark transition-colors">Architecture</a>
+                <a href="#privacy" class="text-apple-textMuted dark:text-apple-textMutedDark hover:text-apple-textMain dark:hover:text-apple-textMainDark transition-colors">Privacy</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2 md:gap-4">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" class="p-2 rounded-full text-apple-textMuted dark:text-apple-textMutedDark hover:text-apple-textMain dark:hover:text-apple-textMainDark hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
+                    <!-- Sun Icon (shows in dark mode) -->
+                    <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <!-- Moon Icon (shows in light mode) -->
+                    <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                
+                <a href="https://discord.com" class="hidden sm:block text-sm font-medium text-apple-textMuted dark:text-apple-textMutedDark hover:text-apple-textMain dark:hover:text-apple-textMainDark transition-colors">Discord</a>
+                <a href="#download" class="bg-apple-blue dark:bg-apple-blueDark hover:bg-apple-blueHover dark:hover:bg-apple-blueHoverDark text-white text-xs md:text-sm font-semibold px-4 py-1.5 md:py-2 rounded-full transition-colors">
+                    Download
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 md:pt-32">
+        
+        <header class="max-w-4xl mx-auto px-6 pt-20 pb-24 md:pt-32 md:pb-40 text-center flex flex-col items-center">
+            <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-8 leading-[1.05] animate-fade-in-1">
+                Pure execution.
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-apple-textMuted dark:text-apple-textMutedDark font-medium leading-relaxed mb-12 max-w-2xl animate-fade-in-2">
+                A lightning-fast Minecraft PvP client stripped of background bloat. Built exclusively for maximum frames and pure gameplay.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 items-center w-full sm:w-auto animate-fade-in-3">
+                <a href="#download" class="bg-apple-blue dark:bg-apple-blueDark hover:bg-apple-blueHover dark:hover:bg-apple-blueHoverDark text-white text-lg font-medium px-8 py-4 rounded-full transition-colors duration-200 w-full sm:w-auto shadow-sm flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                    Download for Windows
+                </a>
+                <a href="#features" class="bg-apple-bg dark:bg-apple-bgDark border border-apple-border dark:border-apple-borderDark hover:bg-apple-border/50 dark:hover:bg-apple-borderDark/50 text-apple-textMain dark:text-apple-textMainDark text-lg font-medium px-8 py-4 rounded-full transition-colors duration-200 w-full sm:w-auto shadow-sm text-center">
+                    Explore features &rarr;
+                </a>
+            </div>
+        </header>
+
+        <section id="features" class="py-24 md:py-40 bg-apple-surface dark:bg-apple-surfaceDark transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+                <div class="flex-1 text-center lg:text-left">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-6">Magnetic grid.<br>Absolute precision.</h2>
+                    <p class="text-xl text-apple-textMuted dark:text-apple-textMutedDark leading-relaxed mb-8">
+                        Stop guessing where your UI elements are. Our proprietary HUD configuration snaps every module to a strict 4px grid. Save your perfect layout with one click and share it instantly with friends.
+                    </p>
+                    <ul class="space-y-4 text-lg text-apple-textMain dark:text-apple-textMainDark font-medium text-left inline-block lg:block">
+                        <li class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-apple-bg dark:bg-apple-bgDark flex items-center justify-center text-apple-blue dark:text-apple-blueDark font-bold">1</span>
+                            120+ Essential PvP Modules
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full bg-apple-bg dark:bg-apple-bgDark flex items-center justify-center text-apple-blue dark:text-apple-blueDark font-bold">2</span>
+                            Zero Cloud Syncing
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="flex-1 w-full">
+                    <div class="aspect-square w-full max-w-md mx-auto bg-apple-bg dark:bg-apple-bgDark rounded-[3rem] shadow-apple dark:shadow-apple-dark hover:shadow-apple-hover dark:hover:shadow-apple-hover-dark border border-apple-border dark:border-apple-borderDark flex items-center justify-center relative overflow-hidden transition-all duration-500">
+                        <!-- Crosshair / Grid visual -->
+                        <div class="absolute inset-0 flex items-center justify-center grid-bg">
+                            <div class="w-full h-[1px] bg-apple-border dark:bg-apple-borderDark absolute"></div>
+                            <div class="h-full w-[1px] bg-apple-border dark:bg-apple-borderDark absolute"></div>
+                            <!-- Abstract UI Element -->
+                            <div class="w-32 h-32 border-2 border-apple-blue dark:border-apple-blueDark rounded-xl bg-apple-blue/10 dark:bg-apple-blueDark/20 backdrop-blur-sm z-10 apple-transition cursor-crosshair"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 md:py-40">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-32">
+                <div class="flex-1 w-full">
+                    
+                    <div class="w-full max-w-md mx-auto relative flex flex-col items-center justify-center">
+                        <!-- Memory Footprint Card -->
+                        <div class="w-full bg-apple-surface dark:bg-apple-surfaceDark rounded-[2rem] p-8 md:p-10 shadow-apple dark:shadow-apple-dark border border-apple-border dark:border-apple-borderDark relative z-10 apple-transition hover:shadow-apple-hover dark:hover:shadow-apple-hover-dark">
+                            
+                            <h4 class="text-xs sm:text-sm font-semibold text-apple-textMuted dark:text-apple-textMutedDark uppercase tracking-wider mb-8 flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" /></svg>
+                                Launcher Idle Memory
+                            </h4>
+                            
+                            <!-- Lunar Launcher -->
+                            <div class="mb-5">
+                                <div class="flex justify-between text-sm font-medium mb-2">
+                                    <span class="text-apple-textMuted dark:text-apple-textMutedDark">Lunar</span>
+                                    <span class="text-apple-textMuted dark:text-apple-textMutedDark font-mono">~440 MB</span>
+                                </div>
+                                <div class="w-full bg-apple-bg dark:bg-apple-bgDark rounded-full h-2 overflow-hidden">
+                                    <div class="bg-gray-300 dark:bg-gray-600 h-full rounded-full transition-all" style="width: 95%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Dawn Launcher -->
+                            <div class="mb-8">
+                                <div class="flex justify-between text-sm font-medium mb-2">
+                                    <span class="text-apple-textMuted dark:text-apple-textMutedDark">Dawn</span>
+                                    <span class="text-apple-textMuted dark:text-apple-textMutedDark font-mono">~350 MB</span>
+                                </div>
+                                <div class="w-full bg-apple-bg dark:bg-apple-bgDark rounded-full h-2 overflow-hidden">
+                                    <div class="bg-gray-300 dark:bg-gray-600 h-full rounded-full transition-all" style="width: 75%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Swyft -->
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-2">
+                                    <span class="text-apple-textMain dark:text-apple-textMainDark font-bold">Swyft</span>
+                                    <span class="text-apple-blue dark:text-apple-blueDark font-bold font-mono">~3 MB</span>
+                                </div>
+                                <div class="w-full bg-apple-blue/10 dark:bg-apple-blueDark/20 rounded-full h-2.5 flex items-center">
+                                    <!-- Perfekter, runder Punkt anstatt eines abgeschnittenen Balkens -->
+                                    <div class="bg-apple-blue dark:bg-apple-blueDark h-2.5 w-2.5 rounded-full shadow-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex-1 text-center lg:text-left">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-6">Lightning fast.<br>Zero background bloat.</h2>
+                    <p class="text-lg md:text-xl text-apple-textMuted dark:text-apple-textMutedDark leading-relaxed mb-8">
+                        Modern clients run heavy background processes that consume massive amounts of your PC's memory before the game even starts. Swyft is built differently. It boots instantly, uses barely any RAM, and leaves all your hardware power exactly where it belongs: inside the game.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="py-24 md:py-40 bg-apple-surface dark:bg-apple-surfaceDark transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-6">Our core principles.</h2>
+                    <p class="text-lg md:text-xl text-apple-textMuted dark:text-apple-textMutedDark leading-relaxed">
+                        We built Swyft because we were tired of the status quo. No bloatware, no locked ecosystems. Just raw engineering.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Independent -->
+                    <div class="bg-apple-bg dark:bg-apple-bgDark rounded-[2rem] p-8 md:p-10 apple-transition border border-apple-border/50 dark:border-apple-borderDark/50 flex flex-col items-center text-center">
+                        <svg class="w-14 h-14 text-apple-textMain dark:text-apple-textMainDark mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                        <h3 class="text-2xl font-semibold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-3">Independent.</h3>
+                        <p class="text-apple-textMuted dark:text-apple-textMutedDark leading-relaxed">
+                            We don't force you into partner networks or queue systems. Swyft is a neutral tool built to enhance your experience on any server, everywhere.
+                        </p>
+                    </div>
+
+                    <!-- Pure Performance -->
+                    <div class="bg-apple-bg dark:bg-apple-bgDark rounded-[2rem] p-8 md:p-10 apple-transition border border-apple-border/50 dark:border-apple-borderDark/50 flex flex-col items-center text-center">
+                        <svg class="w-14 h-14 text-apple-textMain dark:text-apple-textMainDark mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        <h3 class="text-2xl font-semibold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-3">Maximum Frames.</h3>
+                        <p class="text-apple-textMuted dark:text-apple-textMutedDark leading-relaxed">
+                            Engineered for zero stutter and lowest input delay. We keep our footprint tiny so your PC can focus 100% of its power on running Minecraft smoothly.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="privacy" class="py-24 md:py-40">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                
+                <div class="w-16 h-16 mx-auto bg-apple-surface dark:bg-apple-surfaceDark border border-apple-border dark:border-apple-borderDark rounded-2xl flex items-center justify-center mb-8 shadow-sm">
+                    <svg class="w-8 h-8 text-apple-textMain dark:text-apple-textMainDark" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z" /></svg>
+                </div>
+
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-8">Your data.<br>Your machine.</h2>
+                
+                <div class="text-lg md:text-xl text-apple-textMuted dark:text-apple-textMutedDark leading-relaxed space-y-6 max-w-2xl mx-auto">
+                    <p>
+                        Trust is hard to earn and easy to lose, especially for a new project. We believe your PC is your domain, and gaming clients have no business profiling your hardware or tracking your behavior.
+                    </p>
+                    <p>
+                        <strong>Swyft collects zero background telemetry.</strong> We run no hidden analytics and only communicate with our servers for essential authentication and version updates. What happens on your machine, stays on your machine.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="beta" class="py-12 md:py-24 px-6 pb-24 md:pb-40">
+            <div class="max-w-5xl mx-auto bg-apple-surface dark:bg-apple-surfaceDark rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 text-center shadow-apple dark:shadow-apple-dark border border-apple-border dark:border-apple-borderDark relative overflow-hidden transition-colors duration-300">
+                
+                <div class="relative z-10">
+                    <span class="inline-block bg-black dark:bg-white text-white dark:text-black text-xs md:text-sm font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full mb-6 transition-colors">Open Beta</span>
+                    
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-6">Help us shape version 1.0</h2>
+                    
+                    <p class="text-lg md:text-xl text-apple-textMuted dark:text-apple-textMutedDark leading-relaxed max-w-2xl mx-auto mb-10">
+                        We are actively building Swyft alongside our early adopters. Being in beta means you might encounter edge cases, but it also gives you a direct voice in our architecture. We rely on your technical feedback.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="https://discord.com" class="bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 text-lg font-medium px-8 py-4 rounded-full transition-colors inline-flex justify-center items-center gap-2 shadow-sm w-full sm:w-auto">
+                            Join the Beta Discord
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-apple-surface dark:bg-apple-surfaceDark py-12 md:py-16 border-t border-apple-border dark:border-apple-borderDark transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row justify-between items-center gap-8">
+            
+            <div class="text-apple-textMuted dark:text-apple-textMutedDark text-sm font-medium">
+                &copy; 2026 Swyft Project. Built for performance.
+            </div>
+            
+            <div class="flex gap-8 text-sm font-medium text-apple-textMuted dark:text-apple-textMutedDark">
+                <a href="#" class="hover:text-apple-textMain dark:hover:text-apple-textMainDark transition-colors">GitHub</a>
+                <a href="#" class="hover:text-apple-textMain dark:hover:text-apple-textMainDark transition-colors">Bug Tracker</a>
+                <a href="#" class="hover:text-apple-textMain dark:hover:text-apple-textMainDark transition-colors">Privacy Policy</a>
+            </div>
+
+        </div>
+    </footer>
+
 </body>
 </html>
