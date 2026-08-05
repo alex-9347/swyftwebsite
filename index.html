@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en"> <!-- Removed default 'dark' class -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
                             bgDark: '#000000',
                             surfaceDark: '#1C1C1E',
                             textMainDark: '#F5F5F7',
-                            textMutedDark: '#A1A1A6',
+                            textMutedDark: '#D4D4D8', // Increased lightness to L >= 0.85 to pass WCAG-AA
                             blueDark: '#2997FF', // Slightly brighter blue for dark mode contrast
                             blueHoverDark: '#4AA8FF',
                             borderDark: '#333336'
@@ -60,16 +60,6 @@
         }
         
         html { scroll-behavior: smooth; }
-
-        .glass-nav {
-            background-color: rgba(245, 245, 247, 0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-        }
-        
-        html.dark .glass-nav {
-            background-color: rgba(0, 0, 0, 0.72);
-        }
 
         .apple-transition {
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
@@ -102,12 +92,11 @@
     </style>
 
     <script>
-        // FOR GAMING CLIENTS: Default strictly to Dark Mode on first visit, unless user explicitly saved 'light'
-        if (localStorage.theme === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
+        // Respect OS-level system preference instead of forcing dark mode
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
-            localStorage.theme = 'dark'; // lock it in
+        } else {
+            document.documentElement.classList.remove('dark');
         }
 
         function toggleTheme() {
@@ -123,7 +112,7 @@
 </head>
 <body class="bg-apple-bg dark:bg-apple-bgDark text-apple-textMain dark:text-apple-textMainDark selection:bg-apple-blue dark:selection:bg-apple-blueDark selection:text-white transition-colors duration-300">
 
-    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-apple-border/50 dark:border-apple-borderDark/50 transition-colors duration-300">
+    <nav class="fixed top-0 w-full z-50 bg-apple-surface dark:bg-apple-surfaceDark border-b border-apple-border/50 dark:border-apple-borderDark/50 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 h-14 md:h-16 flex items-center justify-between">
             
             <!-- Logo & Badge -->
@@ -203,13 +192,13 @@
                 </div>
                 
                 <div class="flex-1 w-full">
-                    <div class="aspect-square w-full max-w-md mx-auto bg-apple-bg dark:bg-apple-bgDark rounded-[3rem] shadow-apple dark:shadow-apple-dark hover:shadow-apple-hover dark:hover:shadow-apple-hover-dark border border-apple-border dark:border-apple-borderDark flex items-center justify-center relative overflow-hidden transition-all duration-500">
+                    <div class="aspect-square w-full max-w-md mx-auto bg-apple-bg dark:bg-apple-bgDark rounded-[3rem] shadow-apple dark:shadow-apple-dark border border-apple-border dark:border-apple-borderDark flex items-center justify-center relative overflow-hidden transition-all duration-500">
                         <!-- Crosshair / Grid visual -->
                         <div class="absolute inset-0 flex items-center justify-center grid-bg">
                             <div class="w-full h-[1px] bg-apple-border dark:bg-apple-borderDark absolute"></div>
                             <div class="h-full w-[1px] bg-apple-border dark:bg-apple-borderDark absolute"></div>
                             <!-- Abstract UI Element -->
-                            <div class="w-32 h-32 border-2 border-apple-blue dark:border-apple-blueDark rounded-xl bg-apple-blue/10 dark:bg-apple-blueDark/20 backdrop-blur-sm z-10 apple-transition cursor-crosshair"></div>
+                            <div class="w-32 h-32 border-2 border-apple-blue dark:border-apple-blueDark rounded-xl bg-apple-surface dark:bg-apple-surfaceDark z-10 apple-transition cursor-crosshair"></div>
                         </div>
                     </div>
                 </div>
