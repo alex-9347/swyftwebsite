@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Swyft Client</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: [
+                            '-apple-system',
+                            'BlinkMacSystemFont',
+                            '"SF Pro Display"',
+                            '"Segoe UI"',
+                            'Roboto',
+                            'Helvetica',
+                            'Arial',
+                            'sans-serif'
+                        ],
+                        mono: [
+                            'ui-monospace',
+                            'SFMono-Regular',
+                            'Menlo',
+                            'Monaco',
+                            'Consolas',
+                            'monospace'
+                        ],
+                    },
+
+                    colors: {
+                        apple: {
+                            bg: '#F5F5F7',
+                            surface: '#FFFFFF',
+                            textMain: '#1D1D1F',
+                            textMuted: '#86868B',
+                            blue: '#0071E3',
+                            blueHover: '#0077ED',
+                            border: '#D2D2D7',
+
+                            bgDark: '#000000',
+                            surfaceDark: '#1C1C1E',
+                            textMainDark: '#F5F5F7',
+                            textMutedDark: '#D4D4D8',
+                            blueDark: '#2997FF',
+                            blueHoverDark: '#4AA8FF',
+                            borderDark: '#333336'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #F5F5F7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <script>
+        if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) &&
+                window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-apple-bg dark:bg-apple-bgDark text-apple-textMain dark:text-apple-textMainDark selection:bg-apple-blue dark:selection:bg-apple-blueDark selection:text-white transition-colors duration-300">
+
+    <!-- THEME TOGGLE (ONLY BUTTON AT TOP) -->
+    <div class="fixed top-6 right-6 z-50">
+        <button
+            onclick="toggleTheme()"
+            class="p-2.5 rounded-full bg-apple-surface/80 dark:bg-apple-surfaceDark/80 backdrop-blur-md border border-apple-border/60 dark:border-apple-borderDark/60 text-apple-textMuted dark:text-apple-textMutedDark hover:text-apple-textMain dark:hover:text-apple-textMainDark shadow-sm hover:scale-105 active:scale-95 transition-all focus:outline-none"
+            aria-label="Toggle Dark Mode"
+        >
+            <!-- Sun -->
+            <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+            </svg>
+
+            <!-- Moon -->
+            <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+            </svg>
+        </button>
+    </div>
+
+    <!-- MAIN CLEAN CONTINUOUS DOCUMENT -->
+    <main class="max-w-3xl mx-auto px-6 py-16 md:py-28 text-apple-textMuted dark:text-apple-textMutedDark text-base md:text-lg leading-relaxed">
+
+        <!-- DOCUMENT HEADER -->
+        <header class="mb-14">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-3">
+                Privacy Policy
+            </h1>
+            <p class="text-sm font-mono text-apple-textMuted dark:text-apple-textMutedDark italic">
+                Last updated: September 2026
+            </p>
+        </header>
+
+        <!-- 1. OVERVIEW AND DATA CONTROLLER -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                1. Overview and Data Controller
+            </h2>
+            <p class="mb-4">
+                Protecting your personal data is a top priority. We handle your personal data confidentially and in accordance with the statutory data protection regulations, in particular the EU General Data Protection Regulation (GDPR), and this Privacy Policy.
+            </p>
+            <p class="mb-4">
+                <strong class="text-apple-textMain dark:text-apple-textMainDark">Data Controller (Art. 4(7) GDPR):</strong><br>
+                Alex Marc Reeb Comas<br>
+                Email: <a href="mailto:alex.reeb12@gmail.com" class="text-apple-blue dark:text-apple-blueDark hover:underline">alex.reeb12@gmail.com</a>
+            </p>
+            <p>
+                This Privacy Policy does not apply to Minecraft, the Microsoft/Mojang services or any third-party websites. Those are operated by their respective providers under their own privacy policies.
+            </p>
+        </section>
+
+        <!-- 2. WEBSITE HOSTING AND DOWNLOAD INFRASTRUCTURE -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-6">
+                2. Website Hosting and Download Infrastructure (GitHub)
+            </h2>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-3">
+                Hosting via GitHub Pages
+            </h3>
+            <p class="mb-4">
+                Our website is hosted as a static site using GitHub Pages, provided by GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA (a subsidiary of Microsoft Corporation, One Microsoft Way, Redmond, WA 98052, USA).
+            </p>
+            <p class="mb-2">
+                When you access our website, GitHub technically processes server log data, which may include:
+            </p>
+            <ul class="list-disc list-inside space-y-1 mb-6 pl-1">
+                <li>IP address of the accessing device</li>
+                <li>Date and time of access</li>
+                <li>Requested resource / path</li>
+                <li>Transmitted data volume</li>
+                <li>Browser type, browser version and operating system (User-Agent)</li>
+                <li>Referrer URL</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-3">
+                Downloads and Updates via GitHub Releases
+            </h3>
+            <p class="mb-6">
+                Downloads of the launcher executable, software components and automatic application updates are served directly through GitHub Releases. When you download files or query version manifests, your device connects directly to GitHub distribution servers, where technical access data (in particular your IP address) is processed by GitHub. We do not receive this data.
+            </p>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-3">
+                Legal Basis and International Transfers
+            </h3>
+            <ul class="space-y-2">
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Legal basis:</strong> Art. 6(1)(f) GDPR. Our legitimate interest is providing a reliable, secure and performant distribution platform for our website and software.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">International transfers:</strong> Data transfer to the United States is based on the European Commission's adequacy decision under the EU-US Data Privacy Framework (DPF). Microsoft and GitHub are certified under the DPF.
+                </li>
+                <li>
+                    For more information, see the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer" class="text-apple-blue dark:text-apple-blueDark hover:underline">GitHub Privacy Statement</a>.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 3. DATA PROCESSING BY THE CLIENT SOFTWARE -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-6">
+                3. Data Processing by the Client Software (Backend Services)
+            </h2>
+            <p class="mb-6">
+                Our client and launcher follow the principle of data minimization ("Privacy by Design"). The client communicates with our server only to provide online status and multiplayer client features. We do not require an account with us, and we do not collect your name, email address or Minecraft credentials.
+            </p>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-3">
+                a) Online Status (Heartbeat Service)
+            </h3>
+            <ul class="space-y-2 mb-6">
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Data processed:</strong> While the client is running, it sends an automated status update (HTTP POST) to our server approximately every 30 seconds. The request contains your Minecraft Player ID (UUID), a timestamp and your IP address, which is technically necessary to establish the connection. A Minecraft UUID can be linked to your player name through public services, so we treat it as personal data.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Purpose:</strong> Determining online activity to synchronize client status indicators and cosmetic features.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Storage and duration:</strong> UUIDs and timestamps are kept only in the server's volatile memory (RAM) and are not written to persistent storage (hard drives or databases). An automated cleanup routine removes inactive entries from RAM after a maximum of 120 seconds.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Legal basis:</strong> Art. 6(1)(f) GDPR. Our legitimate interest is providing real-time client functionality that users expect from the client. We have weighed this interest against your rights and freedoms, taking into account that we process very few data, store them only for seconds and do not link them to other data. Because many Minecraft players are minors, we specifically considered their interests in this assessment.
+                </li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-3">
+                b) In-Game Client Detection
+            </h3>
+            <ul class="space-y-2 mb-6">
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Data processed:</strong> To show which players within your render distance also use the client, the software can send a list of the UUIDs of visible players (HTTP POST) to our server. This can include UUIDs of players who do not use our client.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Purpose:</strong> Checking which of the visible players currently have an active session held in RAM.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Storage and duration:</strong> The server performs a temporary lookup against active RAM sessions and returns the matching IDs. The submitted IDs are not logged or stored and are discarded immediately after the response is sent. We do not create profiles about who is near whom.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Legal basis:</strong> Art. 6(1)(f) GDPR. Our legitimate interest is providing the client-detection feature. Because the processing is transient and no data is retained, the impact on the affected players is very low.
+                </li>
+                <li>
+                    <strong class="text-apple-textMain dark:text-apple-textMainDark">Information for affected third parties (Art. 14 GDPR):</strong> Players who do not use our client are not informed individually, because the data are discarded immediately and providing individual notice would be impossible or would require disproportionate effort (Art. 14(5)(b) GDPR). This section serves as public information.
+                </li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-2">
+                c) Aggregate Online Counter
+            </h3>
+            <p class="mb-6">
+                An HTTP GET endpoint returns the total number of currently active client users. It returns only a single number. No user IDs, UUIDs or other identifiers are transmitted or exposed.
+            </p>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-2">
+                d) Server Access Logs
+            </h3>
+            <p class="mb-6">
+                We do not keep persistent HTTP access logs containing IP addresses for the backend endpoints described above. IP addresses are processed in volatile memory only for the duration of the connection.
+            </p>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-3">
+                e) Microsoft / Minecraft Login
+            </h3>
+            <p class="mb-3">
+                The launcher lets you sign in with your Microsoft account. The sign-in takes place directly between your device and Microsoft; we do not receive your Microsoft password, and the login data are never transmitted to our servers.
+            </p>
+            <p class="mb-3">
+                After signing in, the launcher stores the resulting authentication tokens locally on your device so that you do not have to log in again each time. These tokens remain on your device, and we have no access to them. You can remove them at any time by deleting the launcher's data folder.
+            </p>
+            <p class="mb-6">
+                When you join a Minecraft server, the game client authenticates with Microsoft/Mojang services as usual. We are not involved in this process. Microsoft's privacy policy applies to the sign-in and to these services.
+            </p>
+
+            <h3 class="text-xl font-semibold text-apple-textMain dark:text-apple-textMainDark mb-2">
+                f) Mandatory Data and Automated Decisions
+            </h3>
+            <p>
+                Using the online features requires the transmission of the data described above; without it, the online status and client detection features cannot work. We do not use automated decision-making or profiling within the meaning of Art. 22 GDPR.
+            </p>
+        </section>
+
+        <!-- 4. BACKEND HOSTING AND RECIPIENTS -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                4. Backend Hosting and Recipients
+            </h2>
+            <p class="mb-4">
+                The backend services run on server infrastructure provided by Netcup GmbH in data centers within the European Union. A data processing agreement pursuant to Art. 28 GDPR has been concluded with the provider. Apart from GitHub (Section 2) and Netcup (this section) as service providers, we do not pass personal data on to third parties.
+            </p>
+            <p>
+                All connections to our backend endpoints are encrypted using TLS (HTTPS).
+            </p>
+        </section>
+
+        <!-- 5. COOKIES AND THIRD-PARTY TRACKING -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                5. Cookies and Third-Party Tracking
+            </h2>
+            <p class="mb-3">This website:</p>
+            <ul class="list-disc list-inside space-y-1 mb-4 pl-1">
+                <li>does not use tracking, analytics or profiling tools (e.g. Google Analytics, Matomo),</li>
+                <li>does not store non-essential or marketing cookies,</li>
+                <li>does not load assets from external third-party content delivery networks (e.g. Google Fonts); all fonts and assets are hosted locally via GitHub Pages.</li>
+            </ul>
+            <p>
+                Therefore, no cookie consent banner is required.
+            </p>
+        </section>
+
+        <!-- 6. YOUR RIGHTS UNDER THE GDPR -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                6. Your Rights Under the GDPR
+            </h2>
+            <p class="mb-3">You have the following rights regarding your personal data:</p>
+            <ul class="list-disc list-inside space-y-1.5 mb-6 pl-1">
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Right of access (Art. 15 GDPR)</strong></li>
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Right to rectification (Art. 16 GDPR)</strong></li>
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Right to erasure (Art. 17 GDPR)</strong></li>
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Right to restriction of processing (Art. 18 GDPR)</strong></li>
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Right to object (Art. 21 GDPR):</strong> You may object at any time, on grounds relating to your particular situation, to processing based on legitimate interests (Art. 6(1)(f) GDPR).</li>
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Right to lodge a complaint (Art. 77 GDPR)</strong> with a supervisory authority, in particular in the EU member state of your habitual residence, place of work or place of the alleged infringement.</li>
+            </ul>
+
+            <p class="mb-4">
+                <strong class="text-apple-textMain dark:text-apple-textMainDark">How to exercise your rights:</strong> Send an email to <a href="mailto:alex.reeb12@gmail.com" class="text-apple-blue dark:text-apple-blueDark hover:underline">alex.reeb12@gmail.com</a>. We will respond within one month.
+            </p>
+            <p>
+                <strong class="text-apple-textMain dark:text-apple-textMainDark">Note on stored data:</strong> Our server does not use persistent databases. Temporary UUID entries are removed automatically after a maximum of 120 seconds of inactivity. After this period, we hold no data that we could link to you. Because of this, requests for access, rectification or erasure can usually only be answered with the information that no data is stored. To handle such requests, we may need to ask you for your UUID.
+            </p>
+        </section>
+
+        <!-- 7. CHANGES TO THIS POLICY -->
+        <section class="pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50 mb-16">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                7. Changes to This Policy
+            </h2>
+            <p class="mb-4">
+                We may update this Privacy Policy when our software or the legal situation changes. The current version is always available on this website.
+            </p>
+            <p class="text-sm font-mono text-apple-textMuted dark:text-apple-textMutedDark italic">
+                Last updated: September 2026
+            </p>
+        </section>
+
+    </main>
+
+</body>
+</html>
