@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Swyft Client</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: [
+                            '-apple-system',
+                            'BlinkMacSystemFont',
+                            '"SF Pro Display"',
+                            '"Segoe UI"',
+                            'Roboto',
+                            'Helvetica',
+                            'Arial',
+                            'sans-serif'
+                        ],
+                        mono: [
+                            'ui-monospace',
+                            'SFMono-Regular',
+                            'Menlo',
+                            'Monaco',
+                            'Consolas',
+                            'monospace'
+                        ],
+                    },
+
+                    colors: {
+                        apple: {
+                            bg: '#F5F5F7',
+                            surface: '#FFFFFF',
+                            textMain: '#1D1D1F',
+                            textMuted: '#86868B',
+                            blue: '#0071E3',
+                            blueHover: '#0077ED',
+                            border: '#D2D2D7',
+
+                            bgDark: '#000000',
+                            surfaceDark: '#1C1C1E',
+                            textMainDark: '#F5F5F7',
+                            textMutedDark: '#D4D4D8',
+                            blueDark: '#2997FF',
+                            blueHoverDark: '#4AA8FF',
+                            borderDark: '#333336'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #F5F5F7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <script>
+        if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) &&
+                window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-apple-bg dark:bg-apple-bgDark text-apple-textMain dark:text-apple-textMainDark selection:bg-apple-blue dark:selection:bg-apple-blueDark selection:text-white transition-colors duration-300">
+
+    <!-- THEME TOGGLE (ONLY BUTTON AT TOP) -->
+    <div class="fixed top-6 right-6 z-50">
+        <button
+            onclick="toggleTheme()"
+            class="p-2.5 rounded-full bg-apple-surface/80 dark:bg-apple-surfaceDark/80 backdrop-blur-md border border-apple-border/60 dark:border-apple-borderDark/60 text-apple-textMuted dark:text-apple-textMutedDark hover:text-apple-textMain dark:hover:text-apple-textMainDark shadow-sm hover:scale-105 active:scale-95 transition-all focus:outline-none"
+            aria-label="Toggle Dark Mode"
+        >
+            <!-- Sun -->
+            <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+            </svg>
+
+            <!-- Moon -->
+            <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+            </svg>
+        </button>
+    </div>
+
+    <!-- MAIN CONTINUOUS DOCUMENT -->
+    <main class="max-w-3xl mx-auto px-6 py-16 md:py-28 text-apple-textMuted dark:text-apple-textMutedDark text-base md:text-lg leading-relaxed">
+
+        <!-- HEADER -->
+        <header class="mb-14">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-3">
+                Terms of Service
+            </h1>
+            <p class="text-sm font-mono text-apple-textMuted dark:text-apple-textMutedDark italic mb-6">
+                Last Updated: September 2026
+            </p>
+            <p class="text-apple-textMain dark:text-apple-textMainDark">
+                Welcome to Swyft Client. By accessing our website, downloading, installing, or using the Swyft Launcher and related software (collectively, "Swyft Client", "we", "us", or "our"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree with any part of these Terms, do not install or use the software.
+            </p>
+        </header>
+
+        <!-- 1. SCOPE & GENERAL OVERVIEW -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                1. Scope & General Overview
+            </h2>
+            <ol class="list-decimal list-outside pl-5 space-y-3">
+                <li>
+                    These Terms govern your use of the Swyft Client software, the launcher, the website, and all associated backend services and application programming interfaces (APIs).
+                </li>
+                <li>
+                    Swyft Client is provided as a free software package designed to enhance performance and improve the user experience for the game <em>Minecraft</em>.
+                </li>
+            </ol>
+        </section>
+
+        <!-- 2. DISCLAIMER OF AFFILIATION WITH MOJANG & MICROSOFT -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                2. Disclaimer of Affiliation with Mojang & Microsoft
+            </h2>
+            <ol class="list-decimal list-outside pl-5 space-y-3">
+                <li>
+                    Swyft Client is an independent project and is <strong class="text-apple-textMain dark:text-apple-textMainDark">not an official Minecraft product</strong>. We are <strong class="text-apple-textMain dark:text-apple-textMainDark">not affiliated with, associated with, endorsed by, or sponsored by Mojang Studios, Mojang Synergies AB, or Microsoft Corporation</strong>.
+                </li>
+                <li>
+                    <em>Minecraft</em> is a registered trademark of Mojang Synergies AB. Your use of Minecraft remains subject to Mojang’s official End User License Agreement (EULA) and Terms of Service.
+                </li>
+            </ol>
+        </section>
+
+        <!-- 3. AUTHENTICATION & THIRD-PARTY SERVICES -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                3. Authentication & Third-Party Services
+            </h2>
+            <ol class="list-decimal list-outside pl-5 space-y-3">
+                <li>
+                    Swyft Client authenticates your account solely via the official Microsoft OAuth service.
+                </li>
+                <li>
+                    We do not collect, process, or store your Microsoft account credentials (such as passwords, security questions, or billing information) on our servers at any time.
+                </li>
+                <li>
+                    You are solely responsible for safeguarding your Microsoft account credentials and managing your account security.
+                </li>
+            </ol>
+        </section>
+
+        <!-- 4. BACKEND APIS & DATA HANDLING -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                4. Backend APIs & Data Handling
+            </h2>
+            <ol class="list-decimal list-outside pl-5 space-y-3">
+                <li>
+                    To provide core features—such as tracking the total online player count and verifying whether specific users are currently online—the client communicates with our backend API.
+                </li>
+                <li>
+                    During these API requests, only the user's public Minecraft UUID (Universally Unique Identifier) is transmitted to verify or update presence status. No private account data, chat logs, or personal identity information is stored or collected by our servers for this service.
+                </li>
+                <li>
+                    We do not guarantee continuous, uninterrupted, or error-free availability of backend services or online features.
+                </li>
+            </ol>
+        </section>
+
+        <!-- 5. ACCEPTABLE USE & CONDUCT -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                5. Acceptable Use & Conduct
+            </h2>
+            <p class="mb-4">
+                You are granted a limited, non-exclusive, revocable, and non-transferable license to use Swyft Client for personal, non-commercial entertainment purposes. You agree NOT to:
+            </p>
+            <ul class="list-disc list-outside pl-5 space-y-2">
+                <li>
+                    Disrupt, overload, or execute attacks (such as DDoS or malicious automated queries) against our backend APIs or server infrastructure.
+                </li>
+                <li>
+                    Distribute modified versions of Swyft Client that include malicious code, spyware, keyloggers, or unauthorized payload modifications under the Swyft name.
+                </li>
+                <li>
+                    Use the service or API for any unlawful activity or to infringe upon the rights of others.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 6. DISCLAIMER REGARDING IN-GAME BANS & SERVER SANCTIONS -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                6. Disclaimer Regarding In-Game Bans & Server Sanctions
+            </h2>
+            <div class="space-y-4">
+                <p>
+                    1. <strong class="text-apple-textMain dark:text-apple-textMainDark">Server Rules & Sanctions:</strong> Server networks have varying rules and automated anticheat solutions. Using modified clients or performance modifications is always done at your own risk. <strong class="text-apple-textMain dark:text-apple-textMainDark">Swyft Client and its creators accept no responsibility or liability for any warnings, kicks, bans, or account penalties incurred on any third-party Minecraft servers.</strong>
+                </p>
+                <p>
+                    2. <strong class="text-apple-textMain dark:text-apple-textMainDark">"As-Is" Provision:</strong> The software and services are provided strictly on an <strong class="text-apple-textMain dark:text-apple-textMainDark">"AS IS"</strong> and <strong class="text-apple-textMain dark:text-apple-textMainDark">"AS AVAILABLE"</strong> basis, without warranties of any kind, whether express or implied, including fitness for a particular purpose or non-infringement.
+                </p>
+            </div>
+        </section>
+
+        <!-- 7. LIMITATION OF LIABILITY -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                7. Limitation of Liability
+            </h2>
+            <p>
+                To the maximum extent permitted by applicable law, in no event shall the developers or operators of Swyft Client be liable for any direct, indirect, incidental, special, consequential, or punitive damages, including data loss, loss of access, or system failure resulting from your download, use of, or inability to use the software.
+            </p>
+        </section>
+
+        <!-- 8. AMENDMENTS TO TERMS -->
+        <section class="mb-12 pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                8. Amendments to Terms
+            </h2>
+            <p>
+                We reserve the right to modify or update these Terms at any time. Any changes will become effective immediately upon posting to the official website. Your continued use of the client or website after revisions constitute your acceptance of the updated Terms.
+            </p>
+        </section>
+
+        <!-- 9. CONTACT INFORMATION -->
+        <section class="pt-8 border-t border-apple-border/50 dark:border-apple-borderDark/50 mb-16">
+            <h2 class="text-2xl font-bold tracking-tight text-apple-textMain dark:text-apple-textMainDark mb-4">
+                9. Contact Information
+            </h2>
+            <p class="mb-3">
+                If you have any questions or concerns regarding these Terms, you can reach out via:
+            </p>
+            <ul class="list-disc list-outside pl-5 space-y-1.5">
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Project:</strong> Swyft Client</li>
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Email:</strong> <a href="mailto:alex.reeb12@gmail.com" class="text-apple-blue dark:text-apple-blueDark hover:underline">alex.reeb12@gmail.com</a></li>
+                <li><strong class="text-apple-textMain dark:text-apple-textMainDark">Discord / Community:</strong> <a href="https://discord.gg/WVXUDVPjJD" target="_blank" rel="noopener noreferrer" class="text-apple-blue dark:text-apple-blueDark hover:underline">https://discord.gg/WVXUDVPjJD</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+</body>
+</html>
